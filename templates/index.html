@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ScriptEasy</title>
+</head>
+<body>
+    <h1>ScriptEasy</h1>
+
+    <a></a>
+
+    <h3>Books</h3>
+    <table>
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Url</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.book_title }}</td>
+                <td><a href="{{ book.book_file.url }}">{{ book.book_file.url }}</a></td>
+                <td><a href="{% url 'book_retrieve' book.id %}">download</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Genres</h3>
+    <table>
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for genre in genres %}
+                <tr>
+                    <td>{{ genre.genre_name }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+</body>
+</html>

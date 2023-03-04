@@ -1,0 +1,11 @@
+*.pdf
+*.mp4
+
+venv/
+converter/migrations/*
+!converter/migrations/__init__.py
+
+__pycache__
+.idea
+.env
+
