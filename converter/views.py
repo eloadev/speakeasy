@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.utils.encoding import smart_str
+
 from .models.book import Book, Genre
 from converter.forms import BookCreate, GenreCreate
 
