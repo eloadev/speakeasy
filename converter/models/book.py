@@ -19,10 +19,3 @@ class Book(models.Model):
 
     def __str__(self):
         return self.book_title
-
-    def retrieve_book(self):
-        s3 = boto3.client("s3")
-
-        s3.download_file(
-            Bucket="speak-easy-bucket", Key=f"books/{self.book_file.name}", Filename="data/downloaded_from_s3.csv"
-        )
