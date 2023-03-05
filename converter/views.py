@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from django.shortcuts import render, redirect
 from django.utils.encoding import smart_str
 
@@ -44,4 +44,7 @@ def book_create(request):
 
 def book_retrieve(request, book_id):
     book = Book.objects.get(id=book_id)
-    book.retrieve_book()
+    book_file = book.book_file.file
+    response = FileResponse(book_file, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="%s"' % smart_str(book_file.name)
+    return response
