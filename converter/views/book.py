@@ -1,8 +1,10 @@
 from django.http import HttpResponse, FileResponse
 from django.shortcuts import redirect, render
+from django.utils.encoding import smart_str
 
 from converter.forms import BookCreate
 from converter.models.book import Book
+from converter.models.s3mediastorage import S3MediaStorage
 
 
 def book_create(request):
@@ -16,6 +18,17 @@ def book_create(request):
             return HttpResponse("""your form is wrong, reload on <a href = "{{ url : 'index'}}">reload</a>""")
     else:
         return render(request, 'book_create.html', {'upload_form': upload})
+
+
+def book_read(request):
+    books = Book.objects.all()
+    return render(request, "index.html", books)
+
+def book_delete(request, book_id):
+    book = Book.objects.get(id=book_id)
+    book.delete()
+    return redirect('book_list')
+
 
 def book_retrieve(request, book_id):
     book = Book.objects.get(id=book_id)
