@@ -12,8 +12,7 @@ class Book(models.Model):
     audio_book = models.OneToOneField(AudioBook, related_name='audio_book',
                                       on_delete=models.CASCADE, null=False, blank=False)
     book_genres = models.ManyToManyField(Genre, related_name='book_genres', blank=False)
-    book_file = models.FileField(upload_to='books/', storage=S3MediaStorage(),
-                                 on_delete=models.CASCADE, null=False, blank=False)
+    book_file = models.FileField(upload_to='books/', storage=S3MediaStorage(), null=False, blank=False)
 
     def __str__(self):
         return self.book_title
