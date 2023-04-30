@@ -5,6 +5,7 @@ from django.utils.encoding import smart_str
 from .models.book import Book, Genre
 from converter.forms import BookCreate, GenreCreate
 
+# eu te amo <3
 
 def index(request):
     books = Book.objects.all
