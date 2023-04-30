@@ -39,7 +39,7 @@ def book_create(request):
         else:
             return HttpResponse("""your form is wrong, reload on <a href = "{{ url : 'index'}}">reload</a>""")
     else:
-        return render(request, 'book_create.html', {'upload_form':upload})
+        return render(request, 'book_create.html', {'upload_form': upload})
 
 
 def book_retrieve(request, book_id):
