@@ -6,8 +6,9 @@ from converter.views import book, genre, index
 urlpatterns = [
     path('', index.index, name="index"),
     path('book/create', book.book_create, name="book_create"),
-    path('genre/create', genre.genre_create, name="genre_create"),
+    path('book/delete/<int:book_id>', book.book_delete, name='book_delete'),
     path('book/retrieve/<int:book_id>', book.book_retrieve, name='book_retrieve'),
+    path('genre/create', genre.genre_create, name="genre_create"),
 ]
 
 

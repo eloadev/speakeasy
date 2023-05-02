@@ -23,6 +23,7 @@
                 <td>{{ book.book_title }}</td>
                 <td><a href="{{ book.book_file.url }}">{{ book.book_file.url }}</a></td>
                 <td><a href="{% url 'book_retrieve' book.id %}">download</a></td>
+                <td><a href="{% url 'book_delete' book.id %}">delete</a>
             </tr>
         {% endfor %}
         </tbody>
