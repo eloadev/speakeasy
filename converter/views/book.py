@@ -24,10 +24,11 @@ def book_read(request):
     books = Book.objects.all()
     return render(request, "index.html", books)
 
+
 def book_delete(request, book_id):
     book = Book.objects.get(id=book_id)
     book.delete()
-    return redirect('book_list')
+    return redirect('index.html')
 
 
 def book_retrieve(request, book_id):
