@@ -12,7 +12,6 @@ converter/migrations/*
 .idea
 .env
 logs
-Dockerfile
 docs
 
 *.pyc
