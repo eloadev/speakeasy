@@ -1,0 +1,66 @@
+
+.body_ix{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.navbar_ix {
+}
+
+.content {
+    flex: 1;
+}
+
+.footer_ix{
+    background-color: var(--yale-blue);
+}
+
+.yale-blue_font{
+    color: var(--yale-blue);
+}
+
+.white_font{
+    color: #ffffff;
+}
+
+.button_ix {
+  background-color: #FFFFFF;
+  border: 1px solid rgb(209,213,219);
+  border-radius: .5rem;
+  color: var(--yale-blue);
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  text-align: center;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+.button_ix:hover {
+  background-color: #f9fafb;
+}
+
+.button_ix:focus {
+  outline: 2px solid rgba(0,0,0,0.9);
+  outline-offset: 2px;
+}
+
+.button_ix:focus-visible {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.font{
+    color: var(--yale-blue)
+}
