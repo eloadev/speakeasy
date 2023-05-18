@@ -1,0 +1,69 @@
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Speakeasy - Signup</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+<style>
+    .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .box {
+        width: 300px;
+        height: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    body {
+        margin: 0px;
+    }
+</style>
+
+<body>
+    {% block content %}
+    <div class="container">
+        <div class="box">
+            <div class="limited-width text-center">
+                <form method="POST" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+                    <div class="form-group m-2">
+                        <label for="id_username"></label>
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group m-2">
+                        <label for="id_email"></label>
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group m-2">
+                        <label for="id_password1"></label>
+                        {{ form.password1 }}
+                    </div>
+                    <div class="form-group m-2">
+                        <label for="id_password2"></label>
+                        {{ form.password2 }}
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block m-4">Sign Up</button>
+                    <div class="text-center">
+                        <p>Already have an account? <a href="{% url 'account_login' %}">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

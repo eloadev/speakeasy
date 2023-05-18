@@ -1,48 +1,147 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
+
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>ScriptEasy</title>
+    <title>Speakeasy</title>
+
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <script src="https://kit.fontawesome.com/05ccc3741f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
 </head>
-<body>
-    <h1>ScriptEasy</h1>
 
-    <a></a>
+<style>
+    main {
+        margin: 20px;
+    }
+</style>
 
-    <h3>Books</h3>
-    <table>
-        <thead>
-            <tr>
-                <td>Title</td>
-                <td>Url</td>
-            </tr>
-        </thead>
-        <tbody>
-        {% for book in books %}
-            <tr>
-                <td>{{ book.book_title }}</td>
-                <td><a href="{{ book.book_file.url }}">{{ book.book_file.url }}</a></td>
-                <td><a href="{% url 'book_retrieve' book.id %}">download</a></td>
-                <td><a href="{% url 'book_delete' book.id %}">delete</a>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<body class="body_ix">
+<nav class="navbar_ix navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand font ms-3" href="#">Speakeasy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+            <div>
+                {% if user.is_authenticated %}
+                    <div class="dropdown me-5">
+                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle font"
+                           id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user me-2"></i>
+                            <strong>Perfil</strong>
+                        </a>
+                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                            <li><a class="dropdown-item font" href="#">New project...</a></li>
+                            <li><a class="dropdown-item font" href="#">Settings</a></li>
+                            <li><a class="dropdown-item font" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form method="post" action="{% url 'account_logout' %}"
+                                      class="d-flex navbar-nav me-auto mb-2 mb-lg-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger me-2 mb-lg-0 font">Sign out</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <ul class="d-flex navbar-nav me-auto mb-2 mb-lg-0">
+                        <li><a href="{% url 'account_login' %}" class="button_ix btn me-2 font">Login</a></li>
+                        <li><a href="{% url 'account_signup' %}" class="button_ix btn me-2 font">Sign up</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
 
-    <h3>Genres</h3>
-    <table>
-            <thead>
-                <tr>
-                    <td>Nome</td>
-                </tr>
-            </thead>
-            <tbody>
-            {% for genre in genres %}
-                <tr>
-                    <td>{{ genre.genre_name }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+<div class="d-flex flex-column flex-shrink-0 p-3 " style="width: 280px;">
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="#" class="nav-link active bg" aria-current="page">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#home"></use>
+                </svg>
+                Home
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2"></use>
+                </svg>
+                Favoritos
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#table"></use>
+                </svg>
+                Orders
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#grid"></use>
+                </svg>
+                Products
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Customers
+            </a>
+        </li>
+        <hr>
+        {% if user.role == '1' or user.role == 1 %}
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Painel de administrador
+            </a>
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Livros
+            </a>
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Gêneros
+            </a>
+            <a href="{% url 'create_user' %}" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Usuários
+            </a>
+        {% endif %}
+    </ul>
+</div>
+
+<main class="content_ix">
+</main>
+
+<footer class="footer_ix text-center text-lg-start text-muted mt-auto">
+    <div class="text-center p-4 white_font">
+        © 2023 Copyright:
+        <a class="text-reset fw-bold" href="#"></a>
+    </div>
+</footer>
 </body>
 </html>

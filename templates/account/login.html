@@ -1,0 +1,63 @@
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Speakeasy - Login</title>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+    </head>
+
+    <style>
+        body{
+            background-color: #F5F6F7;
+        }
+        .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        }
+        .box {
+        width: 300px;
+        height: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    body {
+        margin: 0px;
+    }
+    </style>
+
+    <body>
+        <div class="container">
+            <div class="box">
+                <div class="limited-width text-center">
+                    {% block content %}
+                    <form method="POST" action="{% url 'account_login' %}">
+                        {% csrf_token %}
+                        <div class="form-group m-4">
+                            <label for="id_login"></label>
+                            {{ form.login }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_password"></label>
+                            {{ form.password }}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block m-4">Sign in</button>
+                        <div class="text-center">
+                            <p>Not a member? <a href="{% url 'account_signup' %}">Register</a></p>
+                            <p><a href="{% url 'account_reset_password' %}">Forgot password?</a></p>
+                        </div>
+                    </form>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
