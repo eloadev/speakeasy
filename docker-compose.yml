@@ -1,0 +1,25 @@
+version: '3'
+services:
+  django:
+    image: speakeasy
+    build:
+      context: ${PROJECT_PATH}
+      dockerfile: Dockerfile
+    environment:
+      - DOCKERIZED=true
+    volumes:
+      - ${PROJECT_PATH}:/app
+    ports:
+      - "8000:8000"
+    container_name: speakeasy
+    depends_on:
+      - db
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: speakeasy
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"

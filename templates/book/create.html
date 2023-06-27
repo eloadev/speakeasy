@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create new book</title>
+    <title>Speakeasy - New book</title>
 </head>
 <body>
     {% block content %}
-        <h1>Create new book</h1>
         <form method = 'POST' enctype="multipart/form-data">
             {% csrf_token %}
-            <table style="border-radius:10px;background-color:#FFFF99;">
+            <table>
                 {% for field in upload_form %}
                 <tr>
                     <th>{{field.label}}</th>

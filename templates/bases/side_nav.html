@@ -1,0 +1,71 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 " style="width: 280px;">
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="#" class="nav-link active bg" aria-current="page">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#home"></use>
+                </svg>
+                Home
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2"></use>
+                </svg>
+                Favoritos
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#table"></use>
+                </svg>
+                Orders
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#grid"></use>
+                </svg>
+                Products
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Customers
+            </a>
+        </li>
+        <hr>
+        {% if user.role == '1' or user.role == 1 %}
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Painel de administrador
+            </a>
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Livros
+            </a>
+            <a href="#" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Gêneros
+            </a>
+            <a href="{% url 'create_user' %}" class="nav-link link-dark font">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"></use>
+                </svg>
+                Usuários
+            </a>
+        {% endif %}
+    </ul>
+</div>

@@ -4,10 +4,12 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import redirect, render
 
 from converter.forms.user import UserCreationForm
+from converter.helpers.user import is_authenticated, is_admin
 from converter.models import User
 
 
-@login_required
+@user_passes_test(is_authenticated)
+@user_passes_test(is_admin)
 def create_user(request):
     if getattr(request.user, 'role', '') != User.Role.ADMIN:
         return HttpResponseForbidden("You don't have permission to access this page.")

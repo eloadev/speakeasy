@@ -1,0 +1,42 @@
+<nav class="navbar_ix navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand font ms-3" href="#">Speakeasy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+            <div>
+                {% if user.is_authenticated %}
+                    <div class="dropdown me-5">
+                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle font"
+                           id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user me-2"></i>
+                            <strong>Perfil</strong>
+                        </a>
+                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                            <li><a class="dropdown-item font" href="#">New project...</a></li>
+                            <li><a class="dropdown-item font" href="#">Settings</a></li>
+                            <li><a class="dropdown-item font" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form method="post" action="{% url 'account_logout' %}"
+                                      class="d-flex navbar-nav me-auto mb-2 mb-lg-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger me-2 mb-lg-0 font">Sign out</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <ul class="d-flex navbar-nav me-auto mb-2 mb-lg-0">
+                        <li><a href="{% url 'account_login' %}" class="button_ix btn me-2 font">Login</a></li>
+                        <li><a href="{% url 'account_signup' %}" class="button_ix btn me-2 font">Sign up</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
